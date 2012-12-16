@@ -1,5 +1,0 @@
-C:\Users\G.Burak\Desktop\WebyonetPager\WebyonetPager\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\G.Burak\Desktop\WebyonetPager\WebyonetPager\obj\Debug\Webyonet.dll
-C:\Users\G.Burak\Desktop\WebyonetPager\WebyonetPager\bin\Debug\Webyonet.dll
-C:\Users\G.Burak\Desktop\WebyonetPager\WebyonetPager\bin\Debug\Webyonet.pdb
-C:\Users\G.Burak\Desktop\WebyonetPager\WebyonetPager\obj\Debug\Webyonet.pdb
