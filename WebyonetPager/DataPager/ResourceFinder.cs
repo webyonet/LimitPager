@@ -6,7 +6,6 @@ using System.Text;
 namespace Webyonet.DataPager
 {
     internal sealed class ResourceFinder
-    {
-        
+    {  
     }
 }
