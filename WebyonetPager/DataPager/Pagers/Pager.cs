@@ -230,11 +230,17 @@ namespace Webyonet.DataPager.Pagers
                 if ((CurrentPage == 0 || group == 0) || (groupIndex == 0 && group == 1))
                 {
                     if (CurrentPage == 1)
-                        returnIt.Append("<span title='" + SProperty.FirstText + "' class='first disabled'>" + SProperty.FirstText + "</span><span title='" + SProperty.PrevText + "' class='prev disabled'>" + SProperty.FirstText + "</span>");
+                    {
+                        returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.First, SClass.Disabled), SProperty.FirstText, null));
+                        returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.Prev, SClass.Disabled), SProperty.PrevText, null));
+                        //returnIt.Append("<span title='" + SProperty.FirstText + "' class='first disabled'>" + SProperty.FirstText + "</span><span title='" + SProperty.PrevText + "' class='prev disabled'>" + SProperty.PrevText + "</span>");
+                    }
                     else
                     {
-                        returnIt.Append("<span title='" + SProperty.FirstText + "' class='first disabled'>" + SProperty.FirstText + "</span>");
-                        returnIt.Append("<a title='" + SProperty.PrevText + "' class='prev' href='" + this.CreateUrl(url, querystring, (CurrentPage - 1)) + "'>" + SProperty.PrevText + "</a>");
+                        returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.First, SClass.Disabled), SProperty.FirstText, null));
+                        //returnIt.Append("<span title='" + SProperty.FirstText + "' class='first disabled'>" + SProperty.FirstText + "</span>");
+                        returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Prev, SProperty.PrevText, this.CreateUrl(url, querystring, (CurrentPage - 1))));
+                        //returnIt.Append("<a title='" + SProperty.PrevText + "' class='prev' href='" + this.CreateUrl(url, querystring, (CurrentPage - 1)) + "'>" + SProperty.PrevText + "</a>");
                     }
 
                     for (int i = 1; i <= PageCounter; i++)

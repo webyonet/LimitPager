@@ -1,0 +1,5 @@
+C:\Users\G.Burak\LimitPager\WebyonetPager\bin\Debug\Webyonet.dll
+C:\Users\G.Burak\LimitPager\WebyonetPager\bin\Debug\Webyonet.pdb
+C:\Users\G.Burak\LimitPager\WebyonetPager\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\G.Burak\LimitPager\WebyonetPager\obj\Debug\Webyonet.dll
+C:\Users\G.Burak\LimitPager\WebyonetPager\obj\Debug\Webyonet.pdb
