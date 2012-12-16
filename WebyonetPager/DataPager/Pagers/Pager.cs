@@ -246,9 +246,7 @@ namespace Webyonet.DataPager.Pagers
                     for (int i = 1; i <= PageCounter; i++)
                     {
                         if (CurrentPage == i)
-                        {
                             returnIt.Append("<span class ='active' title='" + i + "' >" + i + "</span>");
-                        }
                         else
                             returnIt.Append("<a title='" + i + "' href='" + this.CreateUrl(url, querystring, i) + "'>" + i + "</a>");
                         if (i == TotalData)
