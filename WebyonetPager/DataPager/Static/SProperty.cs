@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Webyonet.DataPager.Static
 {
-    static class SProperty
+    public static class SProperty
     {
         private static string last = "Last Page";
         private static string first = "First Page";
