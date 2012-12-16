@@ -1,0 +1,10 @@
+C:\Users\EXT0250582\Desktop\WebyonetPager\WebyonetPager\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\EXT0250582\Desktop\WebyonetPager\WebyonetPager\bin\Debug\WebyonetPager.dll
+C:\Users\EXT0250582\Desktop\WebyonetPager\WebyonetPager\bin\Debug\WebyonetPager.pdb
+C:\Users\EXT0250582\Desktop\WebyonetPager\WebyonetPager\obj\Debug\WebyonetPager.dll
+C:\Users\EXT0250582\Desktop\WebyonetPager\WebyonetPager\obj\Debug\WebyonetPager.pdb
+C:\Users\G.Burak\Desktop\WebyonetPager\WebyonetPager\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\G.Burak\Desktop\WebyonetPager\WebyonetPager\bin\Debug\Webyonet.dll
+C:\Users\G.Burak\Desktop\WebyonetPager\WebyonetPager\bin\Debug\Webyonet.pdb
+C:\Users\G.Burak\Desktop\WebyonetPager\WebyonetPager\obj\Debug\Webyonet.dll
+C:\Users\G.Burak\Desktop\WebyonetPager\WebyonetPager\obj\Debug\Webyonet.pdb
