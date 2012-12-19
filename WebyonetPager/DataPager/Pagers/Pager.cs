@@ -6,7 +6,7 @@ using Webyonet.DataPager.Static;
 using Webyonet.DataPager.Interface;
 using Webyonet.DataPager.Mode;
 
-namespace Webyonet.DataPager.Pagers
+namespace Webyonet.DataPager
 {
     class Pager : PagerCore, IPager
     {
@@ -14,7 +14,7 @@ namespace Webyonet.DataPager.Pagers
         CreateElement Element = CreateElement.GetElement();
         Regex Rgx = new Regex(@"\?");
         
-        public Pager(int totalData, int pageCounter, int showdata, int currentPage)
+        public Pager(int totalData, int pageCounter, int showdata, int currentPage, bool anchor)
         {
             PageCounter = pageCounter;
             ShowData = showdata;
@@ -22,7 +22,7 @@ namespace Webyonet.DataPager.Pagers
             CurrentPage = currentPage;
             GetStartPer = CurrentPage;
             GetEndPer = CurrentPage;
-            Anchor = false;
+            Anchor = anchor;
         }
 
         public string GetPager(string url, PagerMethod page_method, string query_string, bool rewrite_multi_query_string)
@@ -74,11 +74,17 @@ namespace Webyonet.DataPager.Pagers
         {
             if (Rgx.IsMatch(url))
             {
-                newUrl = url + "&" + querystring + "=" + pageID;
+                if (Anchor)
+                    newUrl = url + "&" + querystring + "=" + pageID + "#" + querystring + "-" + pageID;
+                else
+                    newUrl = url + "&" + querystring + "=" + pageID;
             }
-            else 
+            else
             {
-                newUrl = url + "?" + querystring + "=" + pageID;
+                if (Anchor)
+                    newUrl = url + "?" + querystring + "=" + pageID + "#" + querystring + "-" + pageID;
+                else
+                    newUrl = url + "?" + querystring + "=" + pageID;
             }
             return newUrl;
         }

@@ -49,6 +49,7 @@
     <Compile Include="DataPager\Mode\Mode.cs" />
     <Compile Include="DataPager\Pagers\Pager.cs" />
     <Compile Include="DataPager\Core\PagerCore.cs" />
+    <Compile Include="DataPager\LimitPagerAnchor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataPager\ResourceFinder.cs" />
     <Compile Include="DataPager\Static\SProperty.cs" />
