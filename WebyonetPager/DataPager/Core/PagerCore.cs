@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Webyonet.DataPager.Core
 {
@@ -56,7 +53,7 @@ namespace Webyonet.DataPager.Core
             }
         }
 
-        protected abstract string CreateUrl(string url, string querystring, int pageID);
-        protected abstract string TestAndCreateUrl(string url, string querystring, int pageID);
+        protected abstract string CreateRewriteUrl(string url, string querystring, int pageID);
+        protected abstract string CreateQueryStringUrl(string url, string querystring, int pageID);
     }
 }

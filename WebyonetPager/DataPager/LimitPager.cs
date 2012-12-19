@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Drawing;
 using Webyonet.DataPager.Static;
-using Webyonet.DataPager.Pagers;
 using Webyonet.DataPager.Mode;
 using Webyonet.DataPager.Factory;
 
@@ -30,6 +24,7 @@ namespace Webyonet.DataPager
         private bool anchor = false;
         private bool multiQuery = false;
         private string query = "Page";
+        private PagerMethod pagerMethod = PagerMethod.QueryString;
         private string ReturnItem { get; set; }
         #endregion
 
@@ -80,18 +75,14 @@ namespace Webyonet.DataPager
             set { SProperty.LastText = value; }
         }
         #endregion
-        #region Total Data - Property
+        #region Query - Property
         [Category("Designer Property")]
+        [DefaultValue("Page")]
         [Browsable(true)]
-        [DefaultValue(0)]
-        [Description("The total number of data")]
-        public int TotalData
+        public string Query
         {
-            get { return totalData; }
-            set
-            {
-                totalData = this.negativeValidate(value);
-            }
+            get { return query; }
+            set { query = value; }
         }
         #endregion
         #region Pager Counter - Property
@@ -107,21 +98,7 @@ namespace Webyonet.DataPager
                 pageCounter = this.negativeValidate(value);
             }
         }
-        #endregion
-        #region Show Data - Property
-        [Category("Designer Property")]
-        [Browsable(true)]
-        [DefaultValue(10)]
-        [Description("Show the data size")]
-        public int ShowData
-        {
-            get { return showData; }
-            set 
-            {
-                showData = this.negativeValidate(value); 
-            }
-        }
-        #endregion      
+        #endregion       
         #region Anchor - Property
         [Category("Designer Property")]
         [DefaultValue(false)]
@@ -154,24 +131,12 @@ namespace Webyonet.DataPager
         [Category("Code Behind Property")]
         [DefaultValue("QueryString")]
         [Browsable(true)]
-        public PagerMethod PagerMethod { get; set; }
-        #endregion
-        #region Url - Property
-        [Category("Code Behind Property")]
-        [DefaultValue(null)]
-        [Browsable(true)]
-        public string Url { get; set; }
-        #endregion
-        #region Query - Property
-        [Category("Code Behind Property")]
-        [DefaultValue("Page")]
-        [Browsable(true)]
-        public string Query 
+        public PagerMethod PagerMethod 
         {
-            get { return query; }
-            set { query = value; } 
+            get { return pagerMethod; }
+            set { pagerMethod = value; } 
         }
-        #endregion
+        #endregion       
         #region Multiple Query String - Property
         [Category("Code Behind Property")]
         [DefaultValue(false)]
@@ -182,7 +147,44 @@ namespace Webyonet.DataPager
             set { multiQuery = value; }
         }
         #endregion
-
+        #region Total Data - Property
+        [Category("Code Behind Property")]
+        [Browsable(true)]
+        [DefaultValue(0)]
+        [Description("The total number of data")]
+        public int TotalData
+        {
+            get { return totalData; }
+            set
+            {
+                totalData = this.negativeValidate(value);
+            }
+        }
+        #endregion
+        #region Show Data - Property
+        [Category("Code Behind Property")]
+        [Browsable(true)]
+        [DefaultValue(10)]
+        [Description("Show the data size")]
+        public int ShowData
+        {
+            get { return showData; }
+            set
+            {
+                showData = this.negativeValidate(value);
+            }
+        }
+        #endregion
+        #region Url - Property
+        [Browsable(false)]
+        public string Url { get; set; }
+        #endregion
+        #region Start / End Period - Property
+        [Browsable(false)]
+        public int GetStartPeriod { get; set; }
+        [Browsable(false)]
+        public int GetEndPeriod { get; set; }
+        #endregion
 
         /// <summary>
         /// Code Behind Methods
@@ -190,7 +192,10 @@ namespace Webyonet.DataPager
         #region Pager Execute - Public Method
         public void ExecutePager()
         {
-            Pager pg = FactoryPager.GetFactoryPager(TotalData, PageCounter, ShowData, CurrentPage);
+            Pager pg = FactoryPager.GetFactoryPager(TotalData, PageCounter, ShowData, CurrentPage, Anchor);
+
+            GetStartPeriod = pg.GetStartPer;
+            GetEndPeriod = pg.GetEndPer;
 
             if (MultipleQueryString == false && PagerMethod == PagerMethod.QueryString)
             {
