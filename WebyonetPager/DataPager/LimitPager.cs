@@ -19,6 +19,9 @@ namespace Webyonet.DataPager
     [ToolboxData("<{0}:LimitPager runat=server></{0}:LimitPager>")]
     public class LimitPager : Control
     {
+        public int GetStartPeriod { get; set; }
+        public int GetEndPeriod { get; set; }
+
         /// <summary>
         /// Private Variable
         /// </summary>
