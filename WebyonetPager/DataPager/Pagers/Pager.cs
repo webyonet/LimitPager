@@ -38,7 +38,7 @@ namespace Webyonet.DataPager
             return returnIt.ToString();
         }
 
-        public string GetPager(string url, PagerMethod page_method, string query_string, bool rewrite_multi_query_string, string other_query, string dummy_text)
+        public string GetMultiPager(string url, PagerMethod page_method, string query_string, bool rewrite_multi_query_string, string other_query, string dummy_text)
         {
             IPager pager = this;
 
@@ -224,7 +224,6 @@ namespace Webyonet.DataPager
                 }
             }
         }
-
         void IPager.GetRewritePager(string url, string querystring)
         {
             returnIt.Clear();
