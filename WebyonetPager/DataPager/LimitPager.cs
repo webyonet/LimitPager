@@ -185,6 +185,14 @@ namespace Webyonet.DataPager
         [Browsable(false)]
         public int GetEndPeriod { get; set; }
         #endregion
+        #region Other QueryString - Property
+        [Browsable(false)]
+        public string OtherQueryString { get; set; }
+        #endregion
+        #region Dummy Text - Property
+        [Browsable(false)]
+        public string DummyText { get; set; }
+        #endregion
 
         /// <summary>
         /// Code Behind Methods
@@ -210,8 +218,8 @@ namespace Webyonet.DataPager
                         throw new Exception("Invalid Pager Method. Select to Pager Method Rewrite");
                     }
                     else
-                    { 
-                        //multi query
+                    {
+                        this.CreatePager(pg.GetMultiPager(Url, PagerMethod, Query, MultipleQueryString, OtherQueryString, DummyText));
                     }
                 }
                 else 
