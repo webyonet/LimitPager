@@ -1,4 +1,9 @@
-﻿using System;
+﻿/// 
+/// Limit Pager
+/// Author G.Burak Demirezen
+/// v2.0.0.3.0
+/// 
+using System;
 using System.ComponentModel;
 using System.Web.UI;
 using System.Drawing;
