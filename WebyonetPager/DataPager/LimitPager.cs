@@ -3,7 +3,6 @@
 /// Author G.Burak Demirezen
 /// v2.0.0.3.0
 /// 
-/// bu alan versionlanınca silinecek
 using System;
 using System.ComponentModel;
 using System.Web.UI;
