@@ -238,14 +238,11 @@ namespace Webyonet.DataPager
                     {
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.First, SClass.Disabled), SProperty.FirstText, null));
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.Prev, SClass.Disabled), SProperty.PrevText, null));
-                        //returnIt.Append("<span title='" + SProperty.FirstText + "' class='first disabled'>" + SProperty.FirstText + "</span><span title='" + SProperty.PrevText + "' class='prev disabled'>" + SProperty.PrevText + "</span>");
                     }
                     else
                     {
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.First, SClass.Disabled), SProperty.FirstText, null));
-                        //returnIt.Append("<span title='" + SProperty.FirstText + "' class='first disabled'>" + SProperty.FirstText + "</span>");
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Prev, SProperty.PrevText, this.CreateRewriteUrl(url, querystring, (CurrentPage - 1))));
-                        //returnIt.Append("<a title='" + SProperty.PrevText + "' class='prev' href='" + this.CreateUrl(url, querystring, (CurrentPage - 1)) + "'>" + SProperty.PrevText + "</a>");
                     }
 
                     for (int i = 1; i <= PageCounter; i++)
@@ -253,13 +250,10 @@ namespace Webyonet.DataPager
                         if (CurrentPage == i)
                         {
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Active, i.ToString(), null));
-                            //returnIt.Append("<span class ='active' title='" + i + "' >" + i + "</span>");
                         }
                         else
                         {
-                            // class'ı olmadığı için null verildi
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, i.ToString(), this.CreateRewriteUrl(url, querystring, i)));
-                            //returnIt.Append("<a title='" + i + "' href='" + this.CreateUrl(url, querystring, i) + "'>" + i + "</a>");
                         }
                             if (i == TotalData)
                             break;
@@ -268,13 +262,8 @@ namespace Webyonet.DataPager
                     if (PageCounter < TotalData)
                     {
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, "...", this.CreateRewriteUrl(url, querystring, (PageCounter + 1))));
-                        //returnIt.Append("<a title='...' href='" + this.CreateUrl(url, querystring, (PageCounter + 1)) + "'>...</a>");
-
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Next, SProperty.NextText, this.CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
-                        //returnIt.Append("<a title='" + SProperty.NextText + "' class='next' href='" + this.CreateUrl(url, querystring, (CurrentPage + 1)) + "'>" + SProperty.NextText + "</a>");
-
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Last, SProperty.LastText, this.CreateRewriteUrl(url, querystring, TotalData)));
-                        //returnIt.Append("<a title='" + SProperty.LastText + "' class='last' href='" + this.CreateUrl(url, querystring, TotalData) + "'>" + SProperty.LastText + "</a>");
                     }
                     else
                     {
@@ -283,28 +272,18 @@ namespace Webyonet.DataPager
 
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.Next, SClass.Disabled), SProperty.NextText, null));
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.Last, SClass.Disabled), SProperty.LastText, null));
-
-                            //returnIt.Append("<span title='" + SProperty.NextText + "' class='next disabled'>" + SProperty.NextText + "</span><span title='" + SProperty.LastText + "' class='last disabled'>" + SProperty.LastText + "</span>");
                         }
                         else
                         {
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Next, SProperty.NextText, this.CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
-
-                           //returnIt.Append("<a title='" + SProperty.NextText + "' class='next' href='" + this.CreateUrl(url, querystring, (CurrentPage + 1)) + "'>" + SProperty.NextText + "</a>");
-
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.Last, SClass.Disabled), SProperty.LastText, null));
-                            //returnIt.Append("<span title='" + SProperty.LastText + "' class='last disabled'>" + SProperty.LastText + "</span>");
                         }
                     }
                 }
                 else
                 {
                     returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.First, SProperty.FirstText,this.CreateRewriteUrl(url, querystring, 1)));
-                    //returnIt.Append("<a title='" + SProperty.FirstText + "' class='first' href='" + this.CreateUrl(url, querystring, 1) + "'>" + SProperty.FirstText + "</a>");
-
                     returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Prev, SProperty.PrevText, this.CreateRewriteUrl(url, querystring, (CurrentPage - 1))));
-
-                    //returnIt.Append("<a title='" + SProperty.PrevText + "' class='prev' href='" + this.CreateUrl(url, querystring, (CurrentPage - 1)) + "'>" + SProperty.PrevText + "</a>");
 
                     int pageGroup = CurrentPage / PageCounter;
                     int pageGroupsort = CurrentPage % PageCounter;
@@ -314,13 +293,11 @@ namespace Webyonet.DataPager
                         pageGroup -= 1;
 
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, "...", this.CreateRewriteUrl(url, querystring, ((pageGroup) * PageCounter))));
-                        //returnIt.Append("<a title='...' href='" + this.CreateUrl(url, querystring, ((pageGroup) * PageCounter)) + "'> ... </a>");
                         pageGroup += 1;
                     }
                     else
                     {
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, "...", this.CreateRewriteUrl(url, querystring, ((pageGroup) * PageCounter))));
-                        //returnIt.Append("<a title='...' href='" + this.CreateUrl(url, querystring, ((pageGroup) * PageCounter)) + "'> ... </a>");
                     }
                     if (pageGroupsort == 0)
                     {
@@ -343,12 +320,10 @@ namespace Webyonet.DataPager
                         if (j == pageGroupsort)
                         {
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Active, (startingPoint + j).ToString(), null));
-                            //returnIt.Append("<span title='" + (startingPoint + j) + "' class='active'>" + (startingPoint + j) + "</span>");
                         }
                         else
                         {
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, (startingPoint + j).ToString(), this.CreateRewriteUrl(url, querystring, (startingPoint + j))));
-                            //returnIt.Append("<a title='" + (startingPoint + j) + "' href='" + this.CreateUrl(url, querystring, (startingPoint + j)) + "'>" + (startingPoint + j) + "</a>");
                         }
                     }
 
@@ -363,21 +338,13 @@ namespace Webyonet.DataPager
                         if ((CurrentPage + PageCounter) <= TotalData)
                         {
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, SProperty.NextText, this.CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
-                            //returnIt.Append("<a title='...' href='" + this.CreateUrl(url, querystring, lastOne) + "'>...</a>");
-
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Next, SProperty.NextText, this.CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
-                            //returnIt.Append("<a title='" + SProperty.NextText + "' class='next' href='" + this.CreateUrl(url, querystring, (CurrentPage + 1)) + "'>" + SProperty.NextText + "</a>");
-
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Last, SProperty.LastText, this.CreateRewriteUrl(url, querystring, TotalData)));
-                            //returnIt.Append("<a title='" + SProperty.LastText + "' class='last' href='" + this.CreateUrl(url, querystring, TotalData) + "'>" + SProperty.LastText + "</a>");
                         }
                         else
                         {
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Next, SProperty.NextText, this.CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
-                            //returnIt.Append("<a title='" + SProperty.NextText + "' class='next' href='" + this.CreateUrl(url, querystring, (CurrentPage + 1)) + "'>" + SProperty.NextText + "</a>");
-
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.Last, SClass.Disabled), SProperty.LastText, null));
-                            //returnIt.Append("<span title='" + SProperty.LastText + "' class='last disabled'>" + SProperty.LastText + "</span>");
                         }
                     }
                     else
@@ -385,18 +352,12 @@ namespace Webyonet.DataPager
                         if (CurrentPage == TotalData)
                         {
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.Next, SClass.Disabled), SProperty.NextText, null));
-
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.Last, SClass.Disabled), SProperty.LastText,null));
-                            //returnIt.Append("<span title='" + SProperty.NextText + "' class='next disabled'>" + SProperty.NextText + "</span><span title='" + SProperty.LastText + "' class='last disabled'>" + SProperty.LastText + "</span>");
                         }
                         else
                         {
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Next, SProperty.NextText, this.CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
-                            //returnIt.Append("<a title='" + SProperty.NextText + "' class='next' href='" + this.CreateUrl(url, querystring, (CurrentPage + 1)) + "'>" + SProperty.NextText + "</a>");
-
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.Last, SClass.Disabled), SProperty.LastText, null));
-
-                            //returnIt.Append("<span title='" + SProperty.LastText + "' class='last disabled'>" + SProperty.LastText + "</span>");
                         }
                     }
                 }

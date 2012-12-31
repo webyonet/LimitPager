@@ -266,6 +266,7 @@ namespace Webyonet.DataPager
         protected override void Render(HtmlTextWriter writer)
         {
             writer.Write(ReturnItem);
+            ReturnItem = string.Empty;
         }
         #endregion
     }
