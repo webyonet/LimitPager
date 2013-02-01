@@ -1,7 +1,7 @@
 ﻿/// 
 /// Limit Pager
 /// Author G.Burak Demirezen
-/// v2.0.0.3.0
+/// v2.0.0.3.1
 /// 
 using System;
 using System.ComponentModel;
