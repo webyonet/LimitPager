@@ -4,36 +4,36 @@ namespace Webyonet.DataPager.Static
 {
     public static class SClass
     {
-        private static string next = "next";
-        private static string prev = "prev";
-        private static string last = "last";
-        private static string first = "first";
-        private static string disabled = "disabled";
-        private static string active = "active";
+        private const string next = "next";
+        private const string prev = "prev";
+        private const string last = "last";
+        private const string first = "first";
+        private const string disabled = "disabled";
+        private const string active = "active";
 
         public static string Prev
         {
-            get { return SClass.prev; }
+            get { return prev; }
         }
         public static string Next
         {
-            get { return SClass.next; }
+            get { return next; }
         }
         public static string Last
         {
-            get { return SClass.last; }
+            get { return last; }
         }
         public static string First
         {
-            get { return SClass.first; }
+            get { return first; }
         }
         public static string Disabled
         {
-            get { return SClass.disabled; }
+            get { return disabled; }
         }
         public static string Active
         {
-            get { return SClass.active; }
+            get { return active; }
         }
 
         public static string Join(string firstClass, string lastClass)

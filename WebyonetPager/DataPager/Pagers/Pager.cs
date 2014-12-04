@@ -12,7 +12,7 @@ namespace Webyonet.DataPager
     {
         private StringBuilder returnIt = new StringBuilder();
         CreateElement Element = CreateElement.GetElement();
-        Regex Rgx = new Regex(@"\?");
+        readonly Regex Rgx = new Regex(@"\?");
         
         public Pager(int totalData, int pageCounter, int showdata, int currentPage, bool anchor)
         {
@@ -94,8 +94,8 @@ namespace Webyonet.DataPager
             returnIt.Clear();
             if (TotalData > 0)
             {
-                int group = CurrentPage / PageCounter;
-                int groupIndex = CurrentPage % PageCounter;
+                var group = CurrentPage / PageCounter;
+                var groupIndex = CurrentPage % PageCounter;
 
                 if ((CurrentPage == 0 || group == 0) || (groupIndex == 0 && group == 1))
                 {
@@ -110,16 +110,12 @@ namespace Webyonet.DataPager
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Prev, SProperty.PrevText, this.CreateQueryStringUrl(url, querystring, (CurrentPage - 1))));
                     }
 
-                    for (int i = 1; i <= PageCounter; i++)
+                    for (var i = 1; i <= PageCounter; i++)
                     {
-                        if (CurrentPage == i)
-                        {
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Active, i.ToString(), null));
-                        }
-                        else
-                        {
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, i.ToString(), this.CreateQueryStringUrl(url, querystring, i)));
-                        }
+                        returnIt.Append(CurrentPage == i
+                            ? Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Active, i.ToString(), null)
+                            : Element.ElementGenerator(CreateElement.ElementType.Link, null, i.ToString(),
+                                CreateQueryStringUrl(url, querystring, i)));
                         if (i == TotalData)
                             break;
                     }
@@ -149,8 +145,8 @@ namespace Webyonet.DataPager
                     returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.First, SProperty.FirstText, this.CreateQueryStringUrl(url, querystring, 1)));
                     returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Prev, SProperty.PrevText, this.CreateQueryStringUrl(url, querystring, (CurrentPage - 1))));
 
-                    int pageGroup = CurrentPage / PageCounter;
-                    int pageGroupsort = CurrentPage % PageCounter;
+                    var pageGroup = CurrentPage / PageCounter;
+                    var pageGroupsort = CurrentPage % PageCounter;
 
                     if (pageGroupsort == 0)
                     {
@@ -167,8 +163,8 @@ namespace Webyonet.DataPager
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, "...", this.CreateQueryStringUrl(url, querystring, ((pageGroup) * PageCounter))));
                     }
 
-                    int startingPoint = pageGroup * PageCounter;
-                    int lastGroup = TotalData / PageCounter;
+                    var startingPoint = pageGroup * PageCounter;
+                    var lastGroup = TotalData / PageCounter;
                     int endOf;
 
                     if (pageGroup != lastGroup)
@@ -178,17 +174,15 @@ namespace Webyonet.DataPager
 
                     for (int j = 1; j <= endOf; j++)
                     {
-                        if (j == pageGroupsort)
-                        {
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Active, (startingPoint + j).ToString(), null));
-                        }
-                        else
-                        {
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, (startingPoint + j).ToString(), this.CreateQueryStringUrl(url, querystring, (startingPoint + j))));
-                        }
+                        returnIt.Append(j == pageGroupsort
+                            ? Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Active,
+                                (startingPoint + j).ToString(), null)
+                            : Element.ElementGenerator(CreateElement.ElementType.Link, null,
+                                (startingPoint + j).ToString(),
+                                CreateQueryStringUrl(url, querystring, (startingPoint + j))));
                     }
 
-                    int lastOne = (pageGroup + 1) * PageCounter + 1;
+                    var lastOne = (pageGroup + 1) * PageCounter + 1;
 
                     if (pageGroup == 0)
                     {
@@ -224,13 +218,14 @@ namespace Webyonet.DataPager
                 }
             }
         }
+
         void IPager.GetRewritePager(string url, string querystring)
         {
             returnIt.Clear();
             if (TotalData > 0)
             {
-                int group = CurrentPage / PageCounter;
-                int groupIndex = CurrentPage % PageCounter;
+                var group = CurrentPage / PageCounter;
+                var groupIndex = CurrentPage % PageCounter;
 
                 if ((CurrentPage == 0 || group == 0) || (groupIndex == 0 && group == 1))
                 {
@@ -245,17 +240,13 @@ namespace Webyonet.DataPager
                         returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Prev, SProperty.PrevText, this.CreateRewriteUrl(url, querystring, (CurrentPage - 1))));
                     }
 
-                    for (int i = 1; i <= PageCounter; i++)
+                    for (var i = 1; i <= PageCounter; i++)
                     {
-                        if (CurrentPage == i)
-                        {
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Active, i.ToString(), null));
-                        }
-                        else
-                        {
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, i.ToString(), this.CreateRewriteUrl(url, querystring, i)));
-                        }
-                            if (i == TotalData)
+                        returnIt.Append(CurrentPage == i
+                            ? Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Active, i.ToString(), null)
+                            : Element.ElementGenerator(CreateElement.ElementType.Link, null, i.ToString(),
+                                CreateRewriteUrl(url, querystring, i)));
+                        if (i == TotalData)
                             break;
                     }
 
@@ -282,22 +273,22 @@ namespace Webyonet.DataPager
                 }
                 else
                 {
-                    returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.First, SProperty.FirstText,this.CreateRewriteUrl(url, querystring, 1)));
-                    returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Prev, SProperty.PrevText, this.CreateRewriteUrl(url, querystring, (CurrentPage - 1))));
+                    returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.First, SProperty.FirstText,CreateRewriteUrl(url, querystring, 1)));
+                    returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Prev, SProperty.PrevText, CreateRewriteUrl(url, querystring, (CurrentPage - 1))));
 
-                    int pageGroup = CurrentPage / PageCounter;
-                    int pageGroupsort = CurrentPage % PageCounter;
+                    var pageGroup = CurrentPage / PageCounter;
+                    var pageGroupsort = CurrentPage % PageCounter;
 
                     if (pageGroupsort == 0)
                     {
                         pageGroup -= 1;
 
-                        returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, "...", this.CreateRewriteUrl(url, querystring, ((pageGroup) * PageCounter))));
+                        returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, "...", CreateRewriteUrl(url, querystring, ((pageGroup) * PageCounter))));
                         pageGroup += 1;
                     }
                     else
                     {
-                        returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, "...", this.CreateRewriteUrl(url, querystring, ((pageGroup) * PageCounter))));
+                        returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, "...", CreateRewriteUrl(url, querystring, ((pageGroup) * PageCounter))));
                     }
                     if (pageGroupsort == 0)
                     {
@@ -306,8 +297,8 @@ namespace Webyonet.DataPager
                             pageGroup = pageGroup - 1;
                     }
 
-                    int startingPoint = pageGroup * PageCounter;
-                    int lastGroup = TotalData / PageCounter;
+                    var startingPoint = pageGroup * PageCounter;
+                    var lastGroup = TotalData / PageCounter;
                     int endOf;
 
                     if (pageGroup != lastGroup)
@@ -315,19 +306,17 @@ namespace Webyonet.DataPager
                     else
                         endOf = TotalData - (pageGroup * PageCounter);
 
-                    for (int j = 1; j <= endOf; j++)
+                    for (var j = 1; j <= endOf; j++)
                     {
-                        if (j == pageGroupsort)
-                        {
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Active, (startingPoint + j).ToString(), null));
-                        }
-                        else
-                        {
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, (startingPoint + j).ToString(), this.CreateRewriteUrl(url, querystring, (startingPoint + j))));
-                        }
+                        returnIt.Append(j == pageGroupsort
+                            ? Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Active,
+                                (startingPoint + j).ToString(), null)
+                            : Element.ElementGenerator(CreateElement.ElementType.Link, null,
+                                (startingPoint + j).ToString(),
+                                CreateRewriteUrl(url, querystring, (startingPoint + j))));
                     }
 
-                    int lastOne = (pageGroup + 1) * PageCounter + 1;
+                    var lastOne = (pageGroup + 1) * PageCounter + 1;
 
                     if (pageGroup == 0)
                     {
@@ -337,9 +326,9 @@ namespace Webyonet.DataPager
                     {
                         if ((CurrentPage + PageCounter) <= TotalData)
                         {
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, SProperty.NextText, this.CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Next, SProperty.NextText, this.CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Last, SProperty.LastText, this.CreateRewriteUrl(url, querystring, TotalData)));
+                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, null, SProperty.NextText, CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
+                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Next, SProperty.NextText, CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
+                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Last, SProperty.LastText, CreateRewriteUrl(url, querystring, TotalData)));
                         }
                         else
                         {
@@ -356,7 +345,7 @@ namespace Webyonet.DataPager
                         }
                         else
                         {
-                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Next, SProperty.NextText, this.CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
+                            returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Link, SClass.Next, SProperty.NextText, CreateRewriteUrl(url, querystring, (CurrentPage + 1))));
                             returnIt.Append(Element.ElementGenerator(CreateElement.ElementType.Text, SClass.Join(SClass.Last, SClass.Disabled), SProperty.LastText, null));
                         }
                     }

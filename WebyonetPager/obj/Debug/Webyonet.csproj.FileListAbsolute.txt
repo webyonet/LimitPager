@@ -8,3 +8,8 @@ C:\Users\Burak\GitHubProject\LimitPager\WebyonetPager\bin\Debug\Webyonet.pdb
 C:\Users\Burak\GitHubProject\LimitPager\WebyonetPager\obj\Debug\Webyonet.csprojResolveAssemblyReference.cache
 C:\Users\Burak\GitHubProject\LimitPager\WebyonetPager\obj\Debug\Webyonet.dll
 C:\Users\Burak\GitHubProject\LimitPager\WebyonetPager\obj\Debug\Webyonet.pdb
+D:\GitProject\LimitPager\WebyonetPager\bin\Debug\Webyonet.dll
+D:\GitProject\LimitPager\WebyonetPager\bin\Debug\Webyonet.pdb
+D:\GitProject\LimitPager\WebyonetPager\obj\Debug\Webyonet.csprojResolveAssemblyReference.cache
+D:\GitProject\LimitPager\WebyonetPager\obj\Debug\Webyonet.dll
+D:\GitProject\LimitPager\WebyonetPager\obj\Debug\Webyonet.pdb

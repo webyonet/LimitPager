@@ -10,23 +10,12 @@ namespace Webyonet.DataPager.Generator
 
         public static CreateElement GetElement()
         {
-            if (element == null)
-            {
-                element = new CreateElement();
-            }
-            return element;
+            return element ?? (element = new CreateElement());
         }
 
-        public string ElementGenerator(ElementType type, string ElementClass, string Text, string Link) 
+        public string ElementGenerator(ElementType type, string ElementClass, string Text, string Link)
         {
-            if (type == ElementType.Link)
-            {
-                ReturnElement = this.LinkElementGenerator(ElementClass, Text, Link);
-            }
-            else
-            {
-                ReturnElement = this.TextElementGenerator(ElementClass, Text);
-            }
+            ReturnElement = type == ElementType.Link ? LinkElementGenerator(ElementClass, Text, Link) : TextElementGenerator(ElementClass, Text);
             return ReturnElement;
         }
 
